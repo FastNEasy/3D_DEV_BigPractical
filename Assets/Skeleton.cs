@@ -30,7 +30,7 @@ public class Skeleton : Character
         if(distToPlayer <= 2.5f){
             Debug.Log("Attacking player ");
             _navmeshAgent.isStopped = true;
-            _navmeshAgent.velocity = Vector3.zero;
+            _navmeshAgent.speed = 0f;
             isAttacking = true;
             isWalking = false;
             _animator.SetBool("isAttacking", isAttacking);
