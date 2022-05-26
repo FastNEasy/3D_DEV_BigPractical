@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool levelStarted { get; set;}
 
     void Awake(){
+        levelStarted = false;
         if(instance == null) instance = this;
         else Destroy(gameObject);
     }

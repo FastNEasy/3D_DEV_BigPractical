@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class StartLevel : MonoBehaviour
 {
-    EnemySpawner spawner;
+    [SerializeField] internal GameObject spawner;
+    [SerializeField] internal GameObject deactivatable;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-        
-        //spawner = 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   void OnTriggerEnter(Collider other){
+       if(other.CompareTag("Player")){
+            //GameManager.instance.levelStarted = true;
+            deactivatable.SetActive(false);
+            spawner.SetActive(true);
+       }
+   }
 }
