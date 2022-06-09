@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < spawn.Length; i++)
         {
             SpawnItem item = spawn[i];
+            item.prefab.SetActive(true);
             Instantiate(item.prefab, item.spawnLocation.position, item.spawnLocation.rotation);
         }
     }

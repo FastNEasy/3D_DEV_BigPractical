@@ -30,7 +30,7 @@ public class PlayerMotionController : MonoBehaviour
     }
     void Update(){
             groundedPlayer = charController.isGrounded;
-            print(groundedPlayer);
+            // print(groundedPlayer);
             float hInput = Input.GetAxis("Horizontal");
             float vInput = Input.GetAxis("Vertical");
             yaw += Input.GetAxis("Mouse X") * Time.deltaTime * RotationSpeed * mouseSensitivity;
