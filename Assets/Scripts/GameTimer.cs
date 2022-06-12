@@ -44,5 +44,6 @@ public class GameTimer : MonoBehaviour
         float minutes = Mathf.FloorToInt(displayedTime / 60); 
         float seconds = Mathf.FloorToInt(displayedTime % 60);
         timerText.text = "Beat them before: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.color = Color.black;
     }
 }
