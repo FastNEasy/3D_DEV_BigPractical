@@ -30,8 +30,9 @@ public class SkeletonAI : Character
     Vector3 playerPos;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _animator = GetComponentInChildren<Animator>();
         _navmeshAgent = GetComponent<NavMeshAgent>();
         _audioSrc = GetComponent<AudioSource>();
@@ -94,26 +95,29 @@ public class SkeletonAI : Character
     void StartWalking(){
         _navmeshAgent.isStopped = false;
         _navmeshAgent.speed = 0.8f;
-        SwitchAttackAnim(false);
+        // SwitchAttackAnim(false);
         SwitchRunningAnim(false);
     }
     void StartRunning(){
        _navmeshAgent.isStopped = false;
        _navmeshAgent.speed = 3f;
     //    _animator.SetTrigger("Run");
-       SwitchAttackAnim(false);
+    //    SwitchAttackAnim(false);
        SwitchRunningAnim(true);
     }
     void StartAttacking(){
+        _audioSrc.Stop();
         _navmeshAgent.isStopped = true;
         _navmeshAgent.velocity = Vector3.zero;
          if(!_audioSrc.isPlaying){
             _audioSrc.PlayOneShot(attackClip);
         }
-        SwitchAttackAnim(true);
+        // SwitchAttackAnim(true);
+        _animator.SetTrigger("Attack");
         SwitchRunningAnim(false);
     }
     void StartToDie(){
+        _audioSrc.Stop();
         _navmeshAgent.isStopped = true;
         _navmeshAgent.velocity = Vector3.zero;
          _audioSrc.PlayOneShot(deathClip);
@@ -122,9 +126,6 @@ public class SkeletonAI : Character
         //dying things
     }
     void SwitchAttackAnim(bool choice){//to avoid DRY
-        if(!_audioSrc.isPlaying){
-            _audioSrc.PlayOneShot(attackClip);
-        }
         _animator.SetBool("isAttacking", choice);
     }
     void SwitchRunningAnim(bool choice){
@@ -132,6 +133,7 @@ public class SkeletonAI : Character
     }
     void GetHit(){
         //apply damage to the enemy
+        _audioSrc.Stop();
         AddDamage(20);
         if(!_audioSrc.isPlaying){
             _audioSrc.PlayOneShot(hitClip);
