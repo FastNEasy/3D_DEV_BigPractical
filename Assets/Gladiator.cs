@@ -41,6 +41,8 @@ public class Gladiator : Character
         _characterController.enabled = false;
         _wepController.enabled = false;
         _deadScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
 
     }
     void OnTriggerEnter(Collider other){
