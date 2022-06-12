@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
 
     //starts to spawn only when user jumps on the arena
     public bool levelStarted { get; set;}
+    public bool overTime { get; set;}
 
     void Awake(){
         levelStarted = false;
+        overTime = false;
         if(instance == null) instance = this;
         else Destroy(gameObject);
     }

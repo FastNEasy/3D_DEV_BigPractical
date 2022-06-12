@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour
 {
     [SerializeField] internal Text timerText;
+    [SerializeField] AudioSource warningSound;
     float timeLeft = 60f;
     bool timerGoing = false;
     // Start is called before the first frame update
@@ -33,6 +34,8 @@ public class GameTimer : MonoBehaviour
                 timeLeft = 0;
                 timerGoing = false;
                 timerText.color = Color.red;
+                GameManager.instance.overTime = true;
+                warningSound.Play();
             }
         }
     }

@@ -7,6 +7,7 @@ public class Gladiator : Character
 {
     PlayerMotionController _playerController;
     [SerializeField] float _receivedDamage = 20f;
+    [SerializeField] float damageOvertime = 5f;
     [SerializeField] Slider _healthSlider;
     protected override void Start(){
         base.Start();
@@ -19,6 +20,14 @@ public class Gladiator : Character
 
     //     }
     // }
+    void Update(){
+        if(GameManager.instance.overTime){
+            ApplyTimedDamage();
+        }
+    }
+    void ApplyTimedDamage(){
+        AddDamage(damageOvertime * Time.deltaTime * 1);
+    }
     protected override void Die(){
         base.Die();
         Debug.Log("You died");
