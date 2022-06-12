@@ -12,10 +12,12 @@ public class Gladiator : Character
     [SerializeField] float damageOvertime = 5f;
     [SerializeField] Slider _healthSlider;
     [SerializeField] GameObject _deadScreen;
+    WeaponController _wepController;
     protected override void Start(){
         base.Start();
         _playerController = GetComponent<PlayerMotionController>();
         _characterController = GetComponent<CharacterController>();
+        _wepController = GetComponentInChildren<WeaponController>();
     }
       
     // public override void AddDamage(float damage){
@@ -37,6 +39,7 @@ public class Gladiator : Character
         Debug.Log("You died");
         _playerController.enabled = false;
         _characterController.enabled = false;
+        _wepController.enabled = false;
         _deadScreen.SetActive(true);
 
     }
