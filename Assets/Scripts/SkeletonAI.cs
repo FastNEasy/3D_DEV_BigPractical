@@ -134,7 +134,7 @@ public class SkeletonAI : Character
     void GetHit(){
         //apply damage to the enemy
         _audioSrc.Stop();
-        AddDamage(20);
+        AddDamage(15);
         if(!_audioSrc.isPlaying){
             _audioSrc.PlayOneShot(hitClip);
         }

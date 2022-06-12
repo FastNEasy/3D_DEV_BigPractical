@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Gladiator : Character
 {
     PlayerMotionController _playerController;
+    [SerializeField] AudioSource _hitSrc;
     [SerializeField] float _receivedDamage = 20f;
     [SerializeField] float damageOvertime = 5f;
     [SerializeField] Slider _healthSlider;
@@ -35,7 +36,9 @@ public class Gladiator : Character
     }
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("EnemyWeapon")){
+            _hitSrc.Stop();
             Debug.Log("I got hit! My health:" + health);
+            _hitSrc.Play();
             AddDamage(_receivedDamage);
         }
     }
